@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\page;
 use Illuminate\Http\Request;
 
+
 class PageController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('page.index');
+        $page = Page::orderby('id','desc')->paginate('10');
+        return view('page.index',['page' => $page]);
     }
 
     /**
@@ -35,7 +37,23 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*validate filels */
+        $this->validate($request,[
+         'postname'=>'required|min:8',
+         'postcontent'=>'required|min:15',
+         'postauthor'=>'required',
+         'authoremail'=> 'required'
+        ]);
+
+         /**  store value in the table */
+         Page::create([
+         'postname'=>$request->postname,
+         'postcontent'=>$request->postcontent,
+         'postauthor'=>$request->postauthor,
+         'authoremail'=> $request->authoremail
+        ]);
+         
+        return redirect()->route('page.index');
     }
 
     /**
@@ -57,7 +75,7 @@ class PageController extends Controller
      */
     public function edit(page $page)
     {
-        //
+        return view('page.edit',['page'=>$page]);
     }
 
     /**
@@ -69,8 +87,13 @@ class PageController extends Controller
      */
     public function update(Request $request, page $page)
     {
-        //
-    }
+        $page->postname = $request->postname;
+        $page->postcontent =  $request->postcontent;
+        $page->authoremail = $request->authoremail;
+        $page->postauthor = $request->postauthor;
+        session()->flash('message','Your post is update');
+        $page->save();
+        return redirect()->back();    }
 
     /**
      * Remove the specified resource from storage.
@@ -80,6 +103,7 @@ class PageController extends Controller
      */
     public function destroy(page $page)
     {
-        //
+        $page->delete();
+        return redirect(route('page.index'));
     }
 }
