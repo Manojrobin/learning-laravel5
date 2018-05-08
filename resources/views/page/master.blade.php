@@ -21,7 +21,8 @@
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{ url('/') }}">HOME</a></li>
-                <li><a href="{{ route('create') }}">CREATE POST</a></li>
+                 <li><a href="{{ route('page.index') }}">PAGE</a></li>
+                <li><a href="{{ route('page.create') }}">CREATE POST</a></li>
                 <li><a href="#">CONTACT INFO</a></li>
             </ul>
         </div>
