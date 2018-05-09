@@ -6,6 +6,7 @@ use App\page;
 use Illuminate\Http\Request;
 //use Vinkla\Alert\Facades\Alert;
 
+
 class PageController extends Controller
 {
     /**
@@ -91,12 +92,18 @@ class PageController extends Controller
         $page->postcontent =  $request->postcontent;
         $page->authoremail = $request->authoremail;
         $page->postauthor = $request->postauthor;
+<<<<<<< HEAD
         //session()->flash('message','Your post is update');
         //Alert::success('Your Post was Updated');
         alert()->success('Your Post was Updated');
         $page->save();
         return redirect()->back();    
     }
+=======
+        session()->flash('message','Your post is update');
+        $page->save();
+        return redirect()->back();    }
+>>>>>>> b5d0bc84179ab179571619a1004fe9e0a6d3a845
 
     /**
      * Remove the specified resource from storage.
@@ -107,6 +114,10 @@ class PageController extends Controller
     public function destroy(page $page)
     {
         $page->delete();
+<<<<<<< HEAD
         return redirect()->route('page.index');
+=======
+        return redirect(route('page.index'));
+>>>>>>> b5d0bc84179ab179571619a1004fe9e0a6d3a845
     }
 }

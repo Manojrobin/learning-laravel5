@@ -21,7 +21,10 @@
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{ url('/') }}">HOME</a></li>
+<<<<<<< HEAD
                  <li><a href="{{ route('page.index') }}">PAGE</a></li>
+=======
+>>>>>>> b5d0bc84179ab179571619a1004fe9e0a6d3a845
                 <li><a href="{{ route('page.create') }}">CREATE POST</a></li>
                 <li><a href="#">CONTACT INFO</a></li>
             </ul>

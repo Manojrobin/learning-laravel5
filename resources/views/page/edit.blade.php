@@ -8,6 +8,7 @@
         </div>
     </div>
    
+<<<<<<< HEAD
     <div class="container">
 
          s
@@ -19,6 +20,18 @@
         <form  action="{{ route('page.update',['page'=>$page->id]) }}" method="POST">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
+=======
+    
+         @if(session()->has('message'))
+              <div class="alert alert-danger">{{ session()->get('message') }}</div>
+         @endif
+      
+   
+    <div class="container">
+        <form  action="{{ route('page.update',['page'=>$page->id]) }}" method="POST">
+            @csrf
+            @method('put')
+>>>>>>> b5d0bc84179ab179571619a1004fe9e0a6d3a845
             <div class="form-group">
                 <label for="exampleInputpost">Post Name</label>
                 <input type="text" class="form-control" id="exampleInputpost" aria-describedby="postHelp"

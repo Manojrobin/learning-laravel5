@@ -18,7 +18,11 @@
    
     <div class="container">
         <form  action="{{ route('page.store') }}" method="POST">
+<<<<<<< HEAD
           {{ csrf_field() }}
+=======
+            @csrf
+>>>>>>> b5d0bc84179ab179571619a1004fe9e0a6d3a845
             <div class="form-group">
                 <label for="exampleInputpost">Post Name</label>
                 <input type="text" class="form-control" id="exampleInputpost" aria-describedby="postHelp"
