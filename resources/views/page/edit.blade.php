@@ -9,10 +9,10 @@
     </div>
 
     <div class="container">
+        @include('alert::bootstrap')
         <form  action="{{ route('page.update',['page'=>$page->id]) }}" method="POST">
-            @csrf
-            @method('put')
-
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
             <div class="form-group">
                 <label for="exampleInputpost">Post Name</label>
                 <input type="text" class="form-control" id="exampleInputpost" aria-describedby="postHelp"
