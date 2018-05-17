@@ -39,19 +39,29 @@ class PageController extends Controller
     public function store(Request $request)
     {
         /*validate filels */
+
+        if($request->hasFile('image')) {
+            $postimage = $request->file('image');
+            $imagename = time().'.'.$postimage->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $postimage->move($destinationPath,$imagename);
+        }
+
         $this->validate($request,[
-         'postname'=>'required|min:8',
-         'postcontent'=>'required|min:15',
-         'postauthor'=>'required',
-         'authoremail'=> 'required'
+         'name'=>'required|min:8',
+         'content'=>'required|min:15',
+         'author'=>'required',
+         'email'=> 'required'
         ]);
 
          /**  store value in the table */
-         Page::create([
-         'postname'=>$request->postname,
-         'postcontent'=>$request->postcontent,
-         'postauthor'=>$request->postauthor,
-         'authoremail'=> $request->authoremail
+        Page::create([
+            'name' => $request->input('name'),
+            'content' => $request->input('content'),
+            'author' => $request->input('author'),
+            'email' => $request->input('email'),
+            'image' => $imagename
+
         ]);
          
         return redirect()->route('page.index');
@@ -65,7 +75,8 @@ class PageController extends Controller
      */
     public function show(page $page)
     {
-        //
+        //dd($page);
+        return view('page.show',['page'=>$page]);
     }
 
     /**
@@ -88,10 +99,22 @@ class PageController extends Controller
      */
     public function update(Request $request, page $page)
     {
-        $page->postname = $request->postname;
-        $page->postcontent =  $request->postcontent;
-        $page->authoremail = $request->authoremail;
-        $page->postauthor = $request->postauthor;
+         
+           
+     
+        if($request->hasFile('image')) {
+            $postimage = $request->file('image');
+            $imagename = $request->image->getClientOriginalName();
+            $destinationPath = public_path('/images');
+            $postimage->move($destinationPath,$imagename);
+        }
+
+
+        $page->name = $request->input('name');
+        $page->content =  $request->input('content');
+        $page->email = $request->input('email');
+        $page->author = $request->input('author');
+        $page->image = $imagename;
 
         //session()->flash('message','Your post is update');
         //Alert::success('Your Post was Updated');

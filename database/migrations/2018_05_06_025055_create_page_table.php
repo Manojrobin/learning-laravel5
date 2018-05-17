@@ -15,10 +15,11 @@ class CreatePageTable extends Migration
     {
           Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('postname');
-            $table->text('postcontent');
-            $table->string('postauthor');
-            $table->string('authoremail');
+            $table->string('name');
+            $table->text('content');
+            $table->string('author');
+            $table->string('email');
+            $table->string('image');
             $table->timestamps();
         });
     }

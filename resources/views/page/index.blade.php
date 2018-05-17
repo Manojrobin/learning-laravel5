@@ -13,8 +13,8 @@
    	 
 <div class="row borders">
   <div class="col-sm-2 borders">{{ ++$loop->index }} </div>
-  <div class="col-sm-3 borders">{{ $pages->postname }}</div>
-  <div class="col-sm-3 borders">{{ $pages->authoremail }}</div>
+	<a href="{{ route('page.show',$pages->id) }}}"><div class="col-sm-3 borders">{{ $pages->name }}</div></a>
+  <div class="col-sm-3 borders">{{ $pages->email }}</div>
   <div class="col-sm-4 borders">
   	<a class='btn btn-xs btn-primary ' href="{{ route('page.edit',['pages' => $pages->id ]) }}">edit</a>
 	<form onsubmit="return confirm('are you sure want to delete');" action='{{ route("page.destroy",$pages->id) }}' method='POST'>

@@ -17,35 +17,36 @@
         @endif
    
     <div class="container">
-        <form  action="{{ route('page.store') }}" method="POST">
+        <form  action="{{ route('page.store') }}" method="POST" enctype='multipart/form-data'>
 
           {{ csrf_field() }}
 
             <div class="form-group">
                 <label for="exampleInputpost">Post Name</label>
                 <input type="text" class="form-control" id="exampleInputpost" aria-describedby="postHelp"
-                       placeholder="Post name" name='postname'>
+                       placeholder="Post name" name='name'>
                 
             </div>
             <div class="form-group">
                 <label for="exampleInputcontent">Post content</label>
                 <textarea type="content" rows="3" class="form-control" id="exampleInputcontent"
-                          placeholder="content" name='postcontent'></textarea>
+                          placeholder="content" name='content'></textarea>
             </div>
                 <div class="form-group">
 
-                    <input type="file" class="filestyle" data-icon="false">
+                    <input type="file" name="image" class="filestyle">
 
                 </div>
             <div class="form-group">
                 <label for="exampleAuther">Auther Name</label>
                 <input type="text" class="form-control" id="exampleInputAuther" aria-describedby="AutherHelp"
-                       placeholder="Auther Name" name='postauthor'>
+                       placeholder="Auther Name" name='author'>
             </div>
+
             <div class="form-group">
                 <label for="exampleSelect2">Email</label>
                 <input type="email" class="form-control" id="exampleInputemail" aria-describedby="emailHelp"
-                       placeholder="Enter email" name='authoremail'>
+                       placeholder="Enter email" name='email'>
                        <small id="postHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
 
