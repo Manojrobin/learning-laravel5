@@ -39,17 +39,19 @@ class PageController extends Controller
     public function store(Request $request)
     {
         /*validate filels */
-
+        
         if($request->hasFile('image')) {
             $postimage = $request->file('image');
-            $imagename = time().'.'.$postimage->getClientOriginalExtension();
+            $imagename = $request->image->getClientOriginalName();
             $destinationPath = public_path('/images');
             $postimage->move($destinationPath,$imagename);
         }
 
+       
+
         $this->validate($request,[
-         'name'=>'required|min:8',
-         'content'=>'required|min:15',
+         'name'=>'required|min:4',
+         'content'=>'required|min:10',
          'author'=>'required',
          'email'=> 'required'
         ]);
@@ -61,7 +63,6 @@ class PageController extends Controller
             'author' => $request->input('author'),
             'email' => $request->input('email'),
             'image' => $imagename
-
         ]);
          
         return redirect()->route('page.index');
