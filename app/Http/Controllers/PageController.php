@@ -47,8 +47,6 @@ class PageController extends Controller
             $postimage->move($destinationPath,$imagename);
         }
 
-       
-
         $this->validate($request,[
          'name'=>'required|min:4',
          'content'=>'required|min:10',
@@ -100,17 +98,16 @@ class PageController extends Controller
      */
     public function update(Request $request, page $page)
     {
-         
            
-     
         if($request->hasFile('image')) {
             $postimage = $request->file('image');
             $imagename = $request->image->getClientOriginalName();
             $destinationPath = public_path('/images');
             $postimage->move($destinationPath,$imagename);
         }
-
-
+        if(empty($imagename)){
+          $imagename = $request->input('current_image');
+        }
         $page->name = $request->input('name');
         $page->content =  $request->input('content');
         $page->email = $request->input('email');

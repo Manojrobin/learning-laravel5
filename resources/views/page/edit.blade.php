@@ -40,6 +40,7 @@
             <div class="gallery">
                 <a target="_blank" href="forest.jpg">
                     <image class="img-rounded" src="/images/{{ $page->image }}" height="300px" width="500px"></image>
+                    <input type='hidden' name='current_image' value="{{ $page->image }}">
                 </a>
                 <div class="desc">Change Post image</div>
             </div>
