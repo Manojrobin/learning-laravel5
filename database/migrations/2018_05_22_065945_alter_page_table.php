@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePageTable extends Migration
+class AlterPageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreatePageTable extends Migration
      */
     public function up()
     {
-          Schema::create('pages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->text('content');
-            $table->string('image');
-            $table->timestamps();
-        });  
+        Schema::table('pages', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->string('post_type');
+        });
     }
 
     /**

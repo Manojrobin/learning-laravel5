@@ -20,4 +20,24 @@
         </div>
     </div>
 </div>
+
+                  <div class="container">
+                     <div class="row borders">
+                         <div class="col-sm-4 borders">Sr. no.</div>
+                            <div class="col-sm-4 borders"><b>Post Name</b></div>
+                       </div>
+                   </div>
+
+            <div class="container">
+                @foreach($page as $pages)
+                 <div class="row borders">
+                     <div class="col-sm-4 borders">{{ ++$loop->index }}</div>
+                        <a href="{{ route('page.show',$pages->id) }}}">
+                            <div class="col-sm-4 borders">{{ $pages->name }}</div>
+                        </a>
+                      </div>
+               @endforeach
+              {{ $page->links() }}
+            </div>
+            
 @endsection

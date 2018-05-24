@@ -18,4 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/update_post_type', 'PageController@update_post_type')->name('postupdate');
 Route::resource('page','PageController');

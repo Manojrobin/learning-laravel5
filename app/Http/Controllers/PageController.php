@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\page;
 use Illuminate\Http\Request;
+use Auth;
 //use Vinkla\Alert\Facades\Alert;
 
 
@@ -16,7 +17,9 @@ class PageController extends Controller
      */
     public function index()
     {
-        $page = Page::orderby('id','desc')->paginate('10');
+        $user = Auth::user();
+        $page = Page::orderby('id','desc')->where('user_id',$user->id)->paginate('10');
+        //$page = Page::table('pages')->where('user_id',$user->id);
         return view('page.index',['page' => $page]);
     }
 
@@ -50,17 +53,18 @@ class PageController extends Controller
         $this->validate($request,[
          'name'=>'required|min:4',
          'content'=>'required|min:10',
-         'author'=>'required',
-         'email'=> 'required'
         ]);
 
          /**  store value in the table */
         Page::create([
+
+            'user_id'=> $request->input('user_id'),
             'name' => $request->input('name'),
             'content' => $request->input('content'),
-            'author' => $request->input('author'),
-            'email' => $request->input('email'),
-            'image' => $imagename
+            'image' => $imagename,
+            //null post type initial 
+            'post_type'=>''
+
         ]);
          
         return redirect()->route('page.index');
@@ -98,7 +102,14 @@ class PageController extends Controller
      */
     public function update(Request $request, page $page)
     {
-           
+         
+        if(!empty($page->post_type)){
+         $post_type = $page->post_type;
+        }
+        else{
+         $post_type = '';
+        }
+
         if($request->hasFile('image')) {
             $postimage = $request->file('image');
             $imagename = $request->image->getClientOriginalName();
@@ -110,8 +121,8 @@ class PageController extends Controller
         }
         $page->name = $request->input('name');
         $page->content =  $request->input('content');
-        $page->email = $request->input('email');
-        $page->author = $request->input('author');
+        $page->post_type = $post_type;
+       
         $page->image = $imagename;
 
         //session()->flash('message','Your post is update');
@@ -131,5 +142,24 @@ class PageController extends Controller
     {
         $page->delete();
         return redirect(route('page.index'));
+    }
+
+    public function update_post_type(page $page)
+    {
+
+
+      
+       $post_id = $_GET['post_id'];
+       $posttype     = $_GET['posttype'];
+      
+       $page = Page::find($post_id);
+        if($page) {
+            $page->post_type = $posttype;
+            $page->update();
+            return 1;
+        }else{
+            return 0;
+        } 
+   
     }
 }

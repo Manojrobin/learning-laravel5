@@ -1,10 +1,10 @@
-@extends('page.master')
+@extends('layouts.app')
 @section('content')
 
     <div class="container  d-flex justify-content-center">
         <div class="container">
             <div class="jumbotron text-center">
-                <div class="panel-body">Create your post on laravel demo site.</div>
+                <div class="panel-body">Show your post on laravel demo site.</div>
             </div>
         </div>
 

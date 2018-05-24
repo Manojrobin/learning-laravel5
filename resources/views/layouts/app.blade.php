@@ -36,6 +36,18 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
+                    @guest
+                        
+                    @else
+                  
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="{{ url('/') }}">HOME</a></li>
+                                     <li><a href="{{ route('page.index') }}">PAGE</a></li>
+                                    <li><a href="{{ route('page.create') }}">CREATE POST</a></li>
+                                    <li><a href="#">CONTACT INFO</a></li>
+                                </ul>
+                            
+                    @endguest
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -78,7 +90,7 @@
 
         @yield('content')
     </div>
-
+    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

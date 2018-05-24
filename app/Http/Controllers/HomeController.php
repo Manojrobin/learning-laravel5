@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Page;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $page = Page::orderby('id','desc')->paginate('10');
+        //$page = Page::table('pages')->where('user_id',$user->id);
+        return view('home',['page' => $page]);
+       
     }
 }

@@ -1,13 +1,16 @@
 <?php
-
 use Faker\Generator as Faker;
 
 $factory->define(App\Page::class, function (Faker $faker) {
+
     return [
-            'postname' => $faker->company,
-            'postcontent' => $faker->text,
-            'postauthor' =>   $faker->name,
-            'authoremail'  => $faker->unique()->safeEmail
+            'name' => $faker->company,
+            'content' => $faker->text,
+            'user_id' => function () {
+            return factory(App\User::class)->create()->id;
+             },
+             'image' => $faker->name.'jpg',
+             'post_type'=> 'public'       
     ];
 });
 
