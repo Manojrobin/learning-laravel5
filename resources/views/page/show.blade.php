@@ -17,13 +17,9 @@
                     <label for="exampleInputcontent">Post content</label>
                    {{ $page->content }}
                 <div class="form-group">
-                    <label for="exampleAuther">Auther Name</label>
-                    {{ $page->author }}
+                    <label for="exampleimage">Image </label>
                 </div>
-                <div class="form-group">
-                    <label for="exampleSelect2">Email</label>
-                    {{ $page->email }}
-                </div>
+
            <image src="/images/{{ $page->image }}" height="300px" width="500px" ></image>
         </div>
     </div>

@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,3 +21,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/update_post_type', 'PageController@update_post_type')->name('postupdate');
 Route::resource('page','PageController');
+Route::get('admin', 'AdminController@index')->middleware('rolecheck:admin')->name('admin.index');

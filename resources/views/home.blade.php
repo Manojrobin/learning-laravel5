@@ -21,6 +21,12 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="jumbotron text-center">
+        <div class="panel-body">Show All public  post on laravel demo site.</div>
+    </div>
+</div>
+
                   <div class="container">
                      <div class="row borders">
                          <div class="col-sm-4 borders">Sr. no.</div>
