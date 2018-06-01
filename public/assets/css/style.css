@@ -78,6 +78,9 @@
 .card-body {
   padding: 0;
 }
+.admin_content {
+  padding-top: 100px !important;
+}
 .card {
   background: #ffffff;
   margin: 7.5px 0;

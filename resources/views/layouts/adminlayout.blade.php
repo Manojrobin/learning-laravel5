@@ -39,7 +39,7 @@
         <link href="{{ asset('assets/css/lib/bootstrap.min.css') }}" rel="stylesheet">
 
         <link href="{{ asset('assets/css/lib/helper.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/lib/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     </head>
 
     <body>
@@ -56,7 +56,7 @@
                         <li class="label">Apps</li>
                         <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i>  Category  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
-                                <li><a href="#">Add Category</a></li>
+                                <li><a href="{{ route('createcategory') }}">Add Category</a></li>
                                 <li><a href="chart-morris.html">List</a></li>
                             </ul>
                         </li>
@@ -66,6 +66,10 @@
             </div>
         </div>
         <!-- /# sidebar -->
+        <div class="admin_content">
+            @yield('content')
+        </div>
+
 
         <!-- jquery vendor -->
         <script src="{{ asset('assets/js/lib/jquery.min.js') }}"></script>

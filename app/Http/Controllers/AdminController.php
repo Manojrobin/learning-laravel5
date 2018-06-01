@@ -3,17 +3,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+use App\Category;
 
 class AdminController extends Controller
 {
-    public function index(){
+    /*
+     * @param /admin
+     */
+    public function index()
+    {
+        return view('admin.index');
+    }
 
-               return view('admin.index');
-        }
+    /*
+     * Show from of category to create
+     */
+    public function CreateCategory()
+    {
+        return view('admin.create_category');
+    }
 
-    public function AdminProfile(){
+    /*
+     * save data in category table
+     */
+    public function StoreCategory(Request $request)
+    {
 
-        return 'admin profile';
+        Category::create([
+             'name' => $request->input('category_name'),
+             'description' => $request->input('category_content'),
+        ]);
+
+        alert()->success('Add category was Updated');
+
+        return redirect()->back();
+
+    }
+
+    public function PostCategory(page $page){
+
     }
 }

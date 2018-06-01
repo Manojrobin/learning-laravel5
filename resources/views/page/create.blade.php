@@ -9,7 +9,8 @@
             <div class="panel-body">Create your post on laravel demo site.</div>
         </div>
     </div>
-   
+
+
         @if($errors->all())
         @foreach($errors->all() as $err)
          <div class="alert alert-danger">
@@ -34,13 +35,14 @@
                 <textarea type="content" rows="3" class="form-control" id="exampleInputcontent"
                           placeholder="content" name='content'></textarea>
             </div>
+
+
                 <div class="form-group">
-
                     <input type="file" name="image" class="filestyle">
-
                 </div>
-           
+
             <input type="hidden" name="user_id" value='{{ $user->id }}'>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterPageTable extends Migration
+class CreatePostCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AlterPageTable extends Migration
      */
     public function up()
     {
-        Schema::table('pages', function (Blueprint $table) {
-            $table->integer('user_id');
-            $table->string('page_type');
+        Schema::create('category_pages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('category_id');
+            $table->integer('page_id');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +28,6 @@ class AlterPageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('category_pages');
     }
 }

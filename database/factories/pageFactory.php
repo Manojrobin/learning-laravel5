@@ -10,7 +10,7 @@ $factory->define(App\Page::class, function (Faker $faker) {
             return factory(App\User::class)->create()->id;
              },
              'image' => $faker->name.'jpg',
-             'post_type'=> 'public'       
+             'page_type'=> 'public'
     ];
 });
 
